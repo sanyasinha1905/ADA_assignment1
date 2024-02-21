@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+class Search {
+    private:
+        int data[11];
+    public:
+        void Insert_data() {
+            cout << "Enter 11 integers:\n";
+            for (int i = 0; i < 11; i++) {
+                cin >> data[i];
+            }
+        }
+
+        void display() {
+            for (int i = 0; i < 11; i++) {
+                cout << data[i] << " ";
+            }
+            cout << endl;
+        }
+
+        int linear_search(int x) {
+            for (int i = 0; i < 11; i++) {
+                if (data[i] == x) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        int binary_search(int x){
+            int low=0, high=10;
+            while(low<=high){
+                int mid=(low+high)/2;
+                
+                if(data[mid]==x)
+                {return mid;}
+               
+                else if(data[mid]<x) 
+                {low=mid+1;}
+                
+                else{high=mid-1;}
+            }
+            return -1;
+        }
+};
+
+int main() {
+    Search s;
+    s.Insert_data();
+    s.display();
+    cout << "Searching for 2, 81, 7, 3:" << endl;
+    cout << "2 found at index: " << s.linear_search(2) << endl;
+    cout << "81 found at index: " << s.linear_search(81) << endl;
+    cout << "7 found at index: " << s.binary_search(7) << endl;
+    cout << "3 found at index: " << s.binary_search(3) << endl;
+    return 0;
+}
